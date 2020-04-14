@@ -5,7 +5,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: '0 0 * * *' # Once per day at midnight
+    - cron: '0 10 * * *' # Once per day at 10am UTC
 
 jobs:
   build:
