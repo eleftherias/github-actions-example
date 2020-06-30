@@ -69,7 +69,7 @@ jobs:
         with:
           java-version: 8
       - name: Deploy Docs
-        run: echo Deploying Docs
+        run: echo Deploying Documentation
   schema:
     name: Deploy Schema
     needs: [build, snapshot_tests, sonar]
