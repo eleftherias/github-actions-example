@@ -81,4 +81,4 @@ jobs:
         with:
           java-version: 8
       - name: Deploy Schema
-        run: echo Deploying Schema
+        run: echo Deploying Schemas
