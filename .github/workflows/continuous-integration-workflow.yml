@@ -1,9 +1,9 @@
-name: CI
+name: feature 2 CI
 
 on:
   push:
     branches:
-      - master
+      - feature-2
   schedule:
     - cron: '0 10 * * *' # Once per day at 10am UTC
 
