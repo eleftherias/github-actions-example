@@ -3,7 +3,7 @@ name: Schedule
 on:
   push:
   schedule:
-    - cron: '*/15 * * * *' # Every 15 minutes
+    - cron: '55 * * * *'
   workflow_dispatch:
 
 jobs:
