@@ -1,4 +1,4 @@
-name: Schedule
+name: Schedule on branch
 
 on:
   push:
