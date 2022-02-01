@@ -3,7 +3,7 @@ name: Schedule
 on:
   push:
   schedule:
-    - cron: '55 * * * *'
+    - cron: '*/15 * * * *' # Every 15 minutes
   workflow_dispatch:
 
 jobs:
@@ -19,4 +19,4 @@ jobs:
         with:
           java-version: '17'
       - name: Build with Gradle
-        run: echo Starting build
+        run: echo Starting build on schedule-branch
