@@ -1,0 +1,21 @@
+name: Commit
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Commit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17'
+      - name: Update test file
+        run: |
+          date > test
+          git commit -ma "Update test file with data"
+          git push
