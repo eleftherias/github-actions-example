@@ -17,5 +17,13 @@ jobs:
       - name: Update test file
         run: |
           date > test
-          git commit -am "Update test file with data"
+      - name: setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - name: commit
+        run: |
+          # Stage the file, commit and push
+          git add test
+          git commit -m "Update test file with data"
           git push
