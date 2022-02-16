@@ -17,5 +17,5 @@ jobs:
       - name: Update test file
         run: |
           date > test
-          git commit -ma "Update test file with data"
+          git commit -am "Update test file with data"
           git push
