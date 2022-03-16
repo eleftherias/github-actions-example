@@ -1,0 +1,44 @@
+name: Next Development Version
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  prerequisites:
+    name: Pre-requisites for building
+    runs-on: ubuntu-latest
+    outputs:
+      project_version: ${{ steps.continue.outputs.project_version }}
+    steps:
+      - uses: actions/checkout@v2
+      - id: continue
+        name: Determine if should continue
+        run: |
+          # Extract version from gradle.properties
+          version=$(cat gradle.properties | grep "version=" | awk -F'=' '{print $2}')
+          echo "::set-output name=project_version::$version"
+  update:
+    if: needs.prerequisites.outputs.project_version == github.ref_name
+    name: Next development version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17'
+      - name: Update test file
+        run: |
+          date > test
+      - name: setup git config
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+      - name: commit
+        run: |
+          # Stage the file, commit and push
+          git add test
+          git commit -m "Update test file with data"
+          git push
