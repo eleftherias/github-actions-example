@@ -2,7 +2,8 @@ name: Next Development Version
 
 on:
   release:
-    types: [published]
+    types:
+    - published
   workflow_dispatch:
 
 jobs:
