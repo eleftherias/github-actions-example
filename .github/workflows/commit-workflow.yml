@@ -1,0 +1,21 @@
+name: Commit with version
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Commit with Version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17'
+      - name: Commit
+        run: |
+          updatedVersion=$(cat gradle.properties | grep "version=" | awk -F'=' '{print $2}')
+          git commit -m "Release $updatedVersion"
+
+
