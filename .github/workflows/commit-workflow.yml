@@ -13,9 +13,18 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '17'
+      - name: setup git config
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+      - name: Update test file
+        run: |
+          date > test
       - name: Commit
         run: |
+          git add test
           updatedVersion=$(cat gradle.properties | grep "version=" | awk -F'=' '{print $2}')
           git commit -m "Release $updatedVersion"
+          git push
 
 
