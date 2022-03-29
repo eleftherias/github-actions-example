@@ -25,6 +25,8 @@ jobs:
           git add test
           updatedVersion=$(cat gradle.properties | grep "version=" | awk -F'=' '{print $2}')
           git commit -m "Release $updatedVersion"
+          git tag $updatedVersion
           git push
+          git push origin $updatedVersion
 
 
