@@ -14,6 +14,11 @@ jobs:
       project_version: ${{ steps.continue.outputs.project_version }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          # NOTE @v2 uses the token as an auth http header. Set it to
+          # a Personal Access Token instead of secrets.GITHUB_TOKEN
+          # so that pushes trigger repo push events.
+          token: ${{ secrets.GH_ACTIONS_REPO_TOKEN }}
       - id: continue
         name: Determine if should continue
         run: |
