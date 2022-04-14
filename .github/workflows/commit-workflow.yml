@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_ACTIONS_REPO_TOKEN }}
+          persist-credentials: false
       - name: Set up JDK
         uses: actions/setup-java@v1
         with:
@@ -23,10 +26,7 @@ jobs:
       - name: Commit
         run: |
           git add test
-          updatedVersion=$(cat gradle.properties | grep "version=" | awk -F'=' '{print $2}')
-          git commit -m "Release $updatedVersion"
-          git tag $updatedVersion
+          git commit -m "Update test file"
           git push
-          git push origin $updatedVersion
 
 
