@@ -1,11 +1,9 @@
 name: Next Development Version
-
 on:
   release:
     types:
-    - published
+      - published
   workflow_dispatch:
-
 jobs:
   prerequisites:
     name: Pre-requisites for building
@@ -13,7 +11,7 @@ jobs:
     outputs:
       project_version: ${{ steps.continue.outputs.project_version }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
       - id: continue
         name: Determine if should continue
         run: |
@@ -25,9 +23,9 @@ jobs:
     name: Next development version
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
       - name: Set up JDK
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@b6e674f4b717d7b0ae3baee0fbe79f498905dfde # v1
         with:
           java-version: '17'
       - name: Update test file
@@ -38,7 +36,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
       - name: commit
-        run: |
+        run: |-
           # Stage the file, commit and push
           git add test
           git commit -m "Update test file with data"
