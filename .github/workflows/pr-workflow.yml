@@ -1,8 +1,5 @@
 name: PR
-
-on:
-  pull_request
-
+on: pull_request
 jobs:
   build:
     name: Build
@@ -10,12 +7,12 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        jdk: [8,9,10,11,12,14]
+        jdk: [8, 9, 10, 11, 12, 14]
       fail-fast: false
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
       - name: Set up JDK ${{ matrix.jdk }}
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@b6e674f4b717d7b0ae3baee0fbe79f498905dfde # v1
         with:
           java-version: ${{ matrix.jdk }}
       - name: Build with Gradle
@@ -24,9 +21,9 @@ jobs:
     name: Test against snapshots
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
       - name: Set up JDK
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@b6e674f4b717d7b0ae3baee0fbe79f498905dfde # v1
         with:
           java-version: 8
       - name: Test
@@ -35,9 +32,9 @@ jobs:
     name: Static Code Analysis
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
       - name: Set up JDK
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@b6e674f4b717d7b0ae3baee0fbe79f498905dfde # v1
         with:
           java-version: 8
       - name: Sonar
@@ -47,9 +44,9 @@ jobs:
     needs: [build, snapshot_tests, sonar]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
       - name: Set up JDK
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@b6e674f4b717d7b0ae3baee0fbe79f498905dfde # v1
         with:
           java-version: 8
       - name: Deploy Artifacts
@@ -59,9 +56,9 @@ jobs:
     needs: [build, snapshot_tests, sonar]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
       - name: Set up JDK
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@b6e674f4b717d7b0ae3baee0fbe79f498905dfde # v1
         with:
           java-version: 8
       - name: Deploy Docs
@@ -71,9 +68,9 @@ jobs:
     needs: [build, snapshot_tests, sonar]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
       - name: Set up JDK
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@b6e674f4b717d7b0ae3baee0fbe79f498905dfde # v1
         with:
           java-version: 8
       - name: Deploy Schema
